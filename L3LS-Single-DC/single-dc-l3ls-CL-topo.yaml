@@ -219,6 +219,7 @@ topology:
         graph-level: 4
         graph-icon: host
 
+  links:
 ########################
 # SPINE1 to LEAF       #
 ########################
@@ -234,8 +235,6 @@ topology:
     - endpoints: ["DC1-SPINE2:eth2", "DC1-LEAF1B:eth2"]
     - endpoints: ["DC1-SPINE2:eth3", "DC1-LEAF2A:eth2"]
     - endpoints: ["DC1-SPINE2:eth4", "DC1-LEAF2B:eth2"]
-
-
 
 ####################
 # LEAF Peer-links  #
