@@ -156,7 +156,7 @@ topology:
     DC1-LEAF2C:
       kind: ceos
       mgmt_ipv4: 172.16.1.152
-      startup-config: ./configs/DC1-LEAF3A.cfg
+      startup-config: ./configs/DC1-LEAF2C.cfg
       binds:
         - ./configs/leaf-mappings.json:/mnt/flash/EosIntfMapping.json:ro
       ports:
