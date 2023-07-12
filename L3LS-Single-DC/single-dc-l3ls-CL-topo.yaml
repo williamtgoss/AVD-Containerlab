@@ -8,7 +8,7 @@ prefix: ""
 
 mgmt:
   network: mgmt
-  ipv4_subnet: 192.168.1.0/24
+  ipv4_subnet: 172.16.1.0/24
 
 topology:
 
@@ -30,7 +30,7 @@ topology:
     graphite:
       kind: linux
       image: netreplica/graphite
-      mgmt_ipv4: 192.168.1.126
+      mgmt_ipv4: 172.16.1.126
       env:
         GRAPHITE_DEFAULT_TYPE: clab
         GRAPHITE_DEFAULT_TOPO: AVD Single DC L3LS
