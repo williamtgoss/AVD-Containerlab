@@ -34,10 +34,11 @@ topology:
       env:
         GRAPHITE_DEFAULT_TYPE: clab
         GRAPHITE_DEFAULT_TOPO: AVD Single DC L3LS
-        # CLAB_SSH_CONNECTION: ${SSH_CONNECTION}
+        CLAB_SSH_CONNECTION: ${SSH_CONNECTION}
       binds:
         # - .:/var/www/localhost/htdocs/clab   <----  This is the old path in docker image netreplica/graphite:webssh2
-        - .:/htdocs/clab    # New path required for latest version
+        - __clabdir__/topology-data.json:/htdocs/default/default.json:ro
+        - __clabDir__/ansible-inventory.yml:/htdocs/lab/default/ansible-inventory.yml:ro    # New path required for latest version
       ports:
         - 80:80
       exec:
