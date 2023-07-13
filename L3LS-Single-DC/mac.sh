@@ -1,16 +1,16 @@
-sudo sed -i 's/..:..:..:..:..:../00:1c:73:10:00:00/' clab-single-dc-l3ls/DC1-SPINE1/flash/system_mac_address
-sudo sed -i 's/..:..:..:..:..:../00:1c:73:11:00:00/' clab-single-dc-l3ls/DC1-SPINE2/flash/system_mac_address
-sudo sed -i 's/..:..:..:..:..:../00:1c:73:12:00:00/' clab-single-dc-l3ls/DC1-LEAF1A/flash/system_mac_address
-sudo sed -i 's/..:..:..:..:..:../00:1c:73:13:00:00/' clab-single-dc-l3ls/DC1-LEAF1B/flash/system_mac_address
-sudo sed -i 's/..:..:..:..:..:../00:1c:73:14:00:00/' clab-single-dc-l3ls/DC1-LEAF2A/flash/system_mac_address
-sudo sed -i 's/..:..:..:..:..:../00:1c:73:15:00:00/' clab-single-dc-l3ls/DC1-LEAF2B/flash/system_mac_address
-sudo sed -i 's/..:..:..:..:..:../00:1c:73:16:00:00/' clab-single-dc-l3ls/DC1-LEAF1C/flash/system_mac_address
-sudo sed -i 's/..:..:..:..:..:../00:1c:73:17:00:00/' clab-single-dc-l3ls/DC1-LEAF2C/flash/system_mac_address
-sudo cp configs/cv-onboarding-token clab-single-dc-l3ls/DC1-SPINE1/flash/cv-onboarding-token
-sudo cp configs/cv-onboarding-token clab-single-dc-l3ls/DC1-SPINE2/flash/cv-onboarding-token
-sudo cp configs/cv-onboarding-token clab-single-dc-l3ls/DC1-LEAF1A/flash/cv-onboarding-token
-sudo cp configs/cv-onboarding-token clab-single-dc-l3ls/DC1-LEAF1B/flash/cv-onboarding-token
-sudo cp configs/cv-onboarding-token clab-single-dc-l3ls/DC1-LEAF2A/flash/cv-onboarding-token
-sudo cp configs/cv-onboarding-token clab-single-dc-l3ls/DC1-LEAF2B/flash/cv-onboarding-token
-sudo cp configs/cv-onboarding-token clab-single-dc-l3ls/DC1-LEAF1C/flash/cv-onboarding-token
-sudo cp configs/cv-onboarding-token clab-single-dc-l3ls/DC1-LEAF2C/flash/cv-onboarding-token
+sudo sed -i 's/..:..:..:..:..:../00:1c:73:aa:00:00/' clab-single-dc-l3ls/dc1-spine1/flash/system_mac_address
+sudo sed -i 's/..:..:..:..:..:../00:1c:73:ab:00:00/' clab-single-dc-l3ls/dc1-spine2/flash/system_mac_address
+sudo sed -i 's/..:..:..:..:..:../00:1c:73:ac:00:00/' clab-single-dc-l3ls/dc1-leaf1a/flash/system_mac_address
+sudo sed -i 's/..:..:..:..:..:../00:1c:73:ad:00:00/' clab-single-dc-l3ls/dc1-leaf1b/flash/system_mac_address
+sudo sed -i 's/..:..:..:..:..:../00:1c:73:ae:00:00/' clab-single-dc-l3ls/dc1-leaf2a/flash/system_mac_address
+sudo sed -i 's/..:..:..:..:..:../00:1c:73:af:00:00/' clab-single-dc-l3ls/dc1-leaf2b/flash/system_mac_address
+sudo sed -i 's/..:..:..:..:..:../00:1c:73:b0:00:00/' clab-single-dc-l3ls/dc1-leaf1c/flash/system_mac_address
+sudo sed -i 's/..:..:..:..:..:../00:1c:73:b1:00:00/' clab-single-dc-l3ls/dc1-leaf2c/flash/system_mac_address
+sudo cp configs/cv-onboarding-token clab-single-dc-l3ls/dc1-spine1/flash/cv-onboarding-token
+sudo cp configs/cv-onboarding-token clab-single-dc-l3ls/dc1-spine2/flash/cv-onboarding-token
+sudo cp configs/cv-onboarding-token clab-single-dc-l3ls/dc1-leaf1a/flash/cv-onboarding-token
+sudo cp configs/cv-onboarding-token clab-single-dc-l3ls/dc1-leaf1b/flash/cv-onboarding-token
+sudo cp configs/cv-onboarding-token clab-single-dc-l3ls/dc1-leaf2a/flash/cv-onboarding-token
+sudo cp configs/cv-onboarding-token clab-single-dc-l3ls/dc1-leaf2b/flash/cv-onboarding-token
+sudo cp configs/cv-onboarding-token clab-single-dc-l3ls/dc1-leaf1c/flash/cv-onboarding-token
+sudo cp configs/cv-onboarding-token clab-single-dc-l3ls/dc1-leaf2c/flash/cv-onboarding-token
