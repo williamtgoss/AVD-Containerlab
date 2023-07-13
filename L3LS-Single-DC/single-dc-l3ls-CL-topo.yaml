@@ -37,8 +37,8 @@ topology:
         CLAB_SSH_CONNECTION: ${SSH_CONNECTION}
       binds:
         # - .:/var/www/localhost/htdocs/clab   <----  This is the old path in docker image netreplica/graphite:webssh2
-        #- /home/containerlab/containerlab/AVD-Containerlab/L3LS-Single-DC/configs/topology-data.json:/htdocs/default/default.json:ro
-        #- /home/containerlab/containerlab/AVD-Containerlab/L3LS-Single-DC/configs/ansible-inventory.yml:/htdocs/lab/default/ansible-inventory.yml:ro    # New path required for latest version
+        - .:/clab-single-dc-l3/topology-data.json:/htdocs/default/default.json:ro
+        - .:/clab-single-dc-l3/ansible-inventory.yml:/htdocs/lab/default/ansible-inventory.yml:ro    # New path required for latest version
       ports:
         - 80:80
       exec:
