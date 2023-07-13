@@ -51,10 +51,10 @@ topology:
 # DC 1 Spines           #
 #########################
 
-    DC1-SPINE1:
+    dc1-spine1:
       kind: ceos
       mgmt_ipv4: 172.16.1.11
-      startup-config: ./configs/DC1-SPINE1.cfg
+      startup-config: ./configs/dc1-spine1.cfg
       binds:
         - ./configs/spine-mappings.json:/mnt/flash/EosIntfMapping.json:ro
       ports:
@@ -65,10 +65,10 @@ topology:
         graph-level: 2
         graph-icon: switch
 
-    DC1-SPINE2:
+    dc1-spine2:
       kind: ceos
       mgmt_ipv4: 172.16.1.12
-      startup-config: ./configs/DC1-SPINE2.cfg
+      startup-config: ./configs/dc1-spine2.cfg
       binds:
         - ./configs/spine-mappings.json:/mnt/flash/EosIntfMapping.json:ro
       ports:
@@ -84,10 +84,10 @@ topology:
 # DC1 Leaves            #
 #########################
 
-    DC1-LEAF1A:
+    dc1-leaf1a:
       kind: ceos
       mgmt_ipv4: 172.16.1.101
-      startup-config: ./configs/DC1-LEAF1A.cfg
+      startup-config: ./configs/dc1-leaf1a.cfg
       binds:
         - ./configs/leaf-mappings.json:/mnt/flash/EosIntfMapping.json:ro
       ports:
@@ -98,10 +98,10 @@ topology:
         graph-level: 3
         graph-icon: switch
 
-    DC1-LEAF1B:
+    dc1-leaf1b:
       kind: ceos
       mgmt_ipv4: 172.16.1.102
-      startup-config: ./configs/DC1-LEAF1B.cfg
+      startup-config: ./configs/dc1-leaf1b.cfg
       binds:
         - ./configs/leaf-mappings.json:/mnt/flash/EosIntfMapping.json:ro
       ports:
@@ -112,10 +112,10 @@ topology:
         graph-level: 3
         graph-icon: switch
 
-    DC1-LEAF2A:
+    dc1-leaf2a:
       kind: ceos
       mgmt_ipv4: 172.16.1.103
-      startup-config: ./configs/DC1-LEAF2A.cfg
+      startup-config: ./configs/dc-leaf2a.cfg
       binds:
         - ./configs/leaf-mappings.json:/mnt/flash/EosIntfMapping.json:ro
       ports:
@@ -126,10 +126,10 @@ topology:
         graph-level: 3
         graph-icon: switch
 
-    DC1-LEAF2B:
+    dc1-leaf2b:
       kind: ceos
       mgmt_ipv4: 172.16.1.104
-      startup-config: ./configs/DC1-LEAF2B.cfg
+      startup-config: ./configs/dc1-leaf2b.cfg
       binds:
         - ./configs/leaf-mappings.json:/mnt/flash/EosIntfMapping.json:ro
       ports:
@@ -140,10 +140,10 @@ topology:
         graph-level: 3
         graph-icon: switch
 
-    DC1-LEAF1C:
+    dc1-leaf1c:
       kind: ceos
       mgmt_ipv4: 172.16.1.151
-      startup-config: ./configs/DC1-LEAF1C.cfg
+      startup-config: ./configs/dc1-leaf1c.cfg
       binds:
         - ./configs/leaf-mappings.json:/mnt/flash/EosIntfMapping.json:ro
       ports:
@@ -154,10 +154,10 @@ topology:
         graph-level: 4
         graph-icon: switch
 
-    DC1-LEAF2C:
+    dc1-leaf2c:
       kind: ceos
       mgmt_ipv4: 172.16.1.152
-      startup-config: ./configs/DC1-LEAF2C.cfg
+      startup-config: ./configs/dc1-leaf2c.cfg
       binds:
         - ./configs/leaf-mappings.json:/mnt/flash/EosIntfMapping.json:ro
       ports:
@@ -172,7 +172,7 @@ topology:
 # DC1 HOSTs                        #
 ###########################################
 
-    DC1-HOST1:
+    dc1-host1:
       kind: linux
       image: mitchv85/ohv-host
       mgmt_ipv4: 172.16.1.111
@@ -184,7 +184,7 @@ topology:
         graph-level: 5
         graph-icon: host
 
-    DC1-HOST2:
+    dc1-host2:
       kind: linux
       image: mitchv85/ohv-host
       mgmt_ipv4: 172.16.1.112
@@ -196,7 +196,7 @@ topology:
         graph-level: 5
         graph-icon: host
 
-    DC1-HOST3:
+    dc1-host3:
       kind: linux
       image: mitchv85/ohv-host
       mgmt_ipv4: 172.16.1.113
@@ -208,7 +208,7 @@ topology:
         graph-level: 5
         graph-icon: host
 
-    DC1-HOST4:
+    dc1-host4:
       kind: linux
       image: mitchv85/ohv-host
       mgmt_ipv4: 172.16.1.114
@@ -224,39 +224,39 @@ topology:
 ########################
 # SPINE1 to LEAF       #
 ########################
-    - endpoints: ["DC1-SPINE1:eth1", "DC1-LEAF1A:eth1"]
-    - endpoints: ["DC1-SPINE1:eth2", "DC1-LEAF1B:eth1"]
-    - endpoints: ["DC1-SPINE1:eth3", "DC1-LEAF2A:eth1"]
-    - endpoints: ["DC1-SPINE1:eth4", "DC1-LEAF2B:eth1"]
+    - endpoints: ["dc1-spine1:eth1", "dc1-leaf1a:eth1"]
+    - endpoints: ["dc1-spine1:eth2", "dc1-leaf1b:eth1"]
+    - endpoints: ["dc1-spine1:eth3", "dc1-leaf2a:eth1"]
+    - endpoints: ["dc1-spine1:eth4", "dc1-leaf2b:eth1"]
 
 ########################
 # SPINE2 to LEAF       #
 ########################
-    - endpoints: ["DC1-SPINE2:eth1", "DC1-LEAF1A:eth2"]
-    - endpoints: ["DC1-SPINE2:eth2", "DC1-LEAF1B:eth2"]
-    - endpoints: ["DC1-SPINE2:eth3", "DC1-LEAF2A:eth2"]
-    - endpoints: ["DC1-SPINE2:eth4", "DC1-LEAF2B:eth2"]
+    - endpoints: ["dc1-spine2:eth1", "dc1-leaf1a:eth2"]
+    - endpoints: ["dc1-spine2:eth2", "dc1-leaf1b:eth2"]
+    - endpoints: ["dc1-spine2:eth3", "dc1-leaf2a:eth2"]
+    - endpoints: ["dc1-spine2:eth4", "dc1-leaf2b:eth2"]
 
 ####################
 # LEAF Peer-links  #
 ####################
-    - endpoints: ["DC1-LEAF1A:eth3", "DC1-LEAF1B:eth3"]
-    - endpoints: ["DC1-LEAF1A:eth4", "DC1-LEAF1B:eth4"]
-    - endpoints: ["DC1-LEAF2A:eth3", "DC1-LEAF2B:eth3"]
-    - endpoints: ["DC1-LEAF2A:eth4", "DC1-LEAF2B:eth4"]
-    - endpoints: ["DC1-LEAF1A:eth8", "DC1-LEAF1C:eth1"]
-    - endpoints: ["DC1-LEAF1B:eth8", "DC1-LEAF1C:eth2"]
-    - endpoints: ["DC1-LEAF2A:eth8", "DC1-LEAF2C:eth1"]
-    - endpoints: ["DC1-LEAF2B:eth8", "DC1-LEAF2C:eth2"]
+    - endpoints: ["dc1-leaf1a:eth3", "dc1-leaf1b:eth3"]
+    - endpoints: ["dc1-leaf1a:eth4", "dc1-leaf1b:eth4"]
+    - endpoints: ["dc1-leaf2a:eth3", "dc1-leaf2b:eth3"]
+    - endpoints: ["dc1-leaf2a:eth4", "dc1-leaf2b:eth4"]
+    - endpoints: ["dc1-leaf1a:eth8", "dc1-leaf1c:eth1"]
+    - endpoints: ["dc1-leaf1b:eth8", "dc1-leaf1c:eth2"]
+    - endpoints: ["dc1-leaf2a:eth8", "dc1-leaf2c:eth1"]
+    - endpoints: ["dc1-leaf2b:eth8", "dc1-leaf2c:eth2"]
 
 ####################
 # Hosts            #
 ####################
-    - endpoints: ["DC1-HOST1:eth1", "DC1-LEAF1A:eth5"]
-    - endpoints: ["DC1-HOST1:eth2", "DC1-LEAF1B:eth5"]
-    - endpoints: ["DC1-HOST2:eth1", "DC1-LEAF1A:eth6"]
-    - endpoints: ["DC1-HOST2:eth2", "DC1-LEAF1B:eth6"]
-    - endpoints: ["DC1-HOST3:eth1", "DC1-LEAF2A:eth5"]
-    - endpoints: ["DC1-HOST3:eth2", "DC1-LEAF2B:eth5"]
-    - endpoints: ["DC1-HOST4:eth1", "DC1-LEAF2A:eth6"]
-    - endpoints: ["DC1-HOST4:eth2", "DC1-LEAF2B:eth6"]
+    - endpoints: ["dc1-host1:eth1", "dc1-leaf1a:eth5"]
+    - endpoints: ["dc1-host1:eth2", "dc1-leaf1b:eth5"]
+    - endpoints: ["dc1-host2:eth1", "dc1-leaf1a:eth6"]
+    - endpoints: ["dc1-host2:eth2", "dc1-leaf1b:eth6"]
+    - endpoints: ["dc1-host3:eth1", "dc1-leaf2a:eth5"]
+    - endpoints: ["dc1-host3:eth2", "dc1-leaf2b:eth5"]
+    - endpoints: ["dc1-host4:eth1", "dc1-leaf2a:eth6"]
+    - endpoints: ["dc1-host4:eth2", "dc1-leaf2b:eth6"]
