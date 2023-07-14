@@ -157,10 +157,10 @@ service_routing_protocols_model: multi-agent
 ip_routing: true
 daemon_terminattr:
   cvaddrs:
-  - 192.168.1.12:9910
+  - apiserver.arista.io:443
   cvauth:
-    method: token
-    token_file: /tmp/token
+    method: token-secure
+    token_file: /tmp/cv-onboarding-token
   cvvrf: MGMT
   smashexcludes: ale,flexCounter,hardware,kni,pulse,strata
   ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
@@ -171,7 +171,7 @@ vlan_internal_order:
     beginning: 1006
     ending: 1199
 ip_name_servers:
-- ip_address: 192.168.1.1
+- ip_address: 172.16.1.1
   vrf: MGMT
 spanning_tree:
   mode: mstp
@@ -183,7 +183,7 @@ local_users:
 - name: admin
   privilege: 15
   role: network-admin
-  no_password: true
+  sha512_password: $6$nCS4WCHbh3uTQqBo$hdembb1YzRICkVLulMkodeBIOVHhqJwB/Z5hkPznDZYIF3Xd6WPULZi4JBcuBgO8fAORz7JSxAmLudQAT.p/P.
 - name: ansible
   privilege: 15
   role: network-admin
@@ -317,7 +317,7 @@ port_channel_interfaces:
   vlans: 11-12,21-22,3401-3402
   mlag: 8
 - name: Port-Channel5
-  description: dc1-leaf2-server1_PortChannel dc1-leaf2-server1
+  description: dc1-host3_PortChannel dc1-host3
   type: switched
   shutdown: false
   mode: trunk
@@ -325,6 +325,15 @@ port_channel_interfaces:
   native_vlan: 4092
   spanning_tree_portfast: edge
   mlag: 5
+- name: Port-Channel6
+  description: dc1-host4_PortChannel dc1-host4
+  type: switched
+  shutdown: false
+  mode: trunk
+  vlans: 11-12,21-22
+  native_vlan: 4092
+  spanning_tree_portfast: edge
+  mlag: 6
 ethernet_interfaces:
 - name: Ethernet3
   peer: dc1-leaf2a
@@ -375,14 +384,24 @@ ethernet_interfaces:
     id: 8
     mode: active
 - name: Ethernet5
-  peer: dc1-leaf2-server1
-  peer_interface: PCI2
+  peer: dc1-host3
+  peer_interface: Eth2
   peer_type: server
-  description: dc1-leaf2-server1_PCI2
+  description: dc1-host3_Eth2
   shutdown: false
   type: port-channel-member
   channel_group:
     id: 5
+    mode: active
+- name: Ethernet6
+  peer: dc1-host4
+  peer_interface: Eth2
+  peer_type: server
+  description: dc1-host4_Eth2
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 6
     mode: active
 mlag_configuration:
   domain_id: DC1_L3_LEAF2

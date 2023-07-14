@@ -68,7 +68,7 @@ servers:
 
       - endpoint_ports: [ iLO ]
         switch_ports: [ Ethernet6 ]
-        switches: [ dc1-leaf2c ]
+        switches: [ dc1-leaf1c ]
         vlans: 11
         mode: access
         spanning_tree_portfast: edge

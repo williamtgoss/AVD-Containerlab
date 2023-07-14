@@ -5,10 +5,10 @@ static_routes:
 service_routing_protocols_model: multi-agent
 daemon_terminattr:
   cvaddrs:
-  - 192.168.1.12:9910
+  - apiserver.arista.io:443
   cvauth:
-    method: token
-    token_file: /tmp/token
+    method: token-secure
+    token_file: /tmp/cv-onboarding-token
   cvvrf: MGMT
   smashexcludes: ale,flexCounter,hardware,kni,pulse,strata
   ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
@@ -19,7 +19,7 @@ vlan_internal_order:
     beginning: 1006
     ending: 1199
 ip_name_servers:
-- ip_address: 192.168.1.1
+- ip_address: 172.16.1.1
   vrf: MGMT
 spanning_tree:
   mode: mstp
@@ -30,7 +30,7 @@ local_users:
 - name: admin
   privilege: 15
   role: network-admin
-  no_password: true
+  sha512_password: $6$nCS4WCHbh3uTQqBo$hdembb1YzRICkVLulMkodeBIOVHhqJwB/Z5hkPznDZYIF3Xd6WPULZi4JBcuBgO8fAORz7JSxAmLudQAT.p/P.
 - name: ansible
   privilege: 15
   role: network-admin
@@ -72,10 +72,20 @@ ethernet_interfaces:
     id: 1
     mode: active
 - name: Ethernet5
-  peer: dc1-leaf2-server1
+  peer: dc1-host2
   peer_interface: iLO
   peer_type: server
-  description: dc1-leaf2-server1_iLO
+  description: dc1-host2_iLO
+  shutdown: false
+  type: switched
+  mode: access
+  vlans: '11'
+  spanning_tree_portfast: edge
+- name: Ethernet6
+  peer: dc1-host4
+  peer_interface: iLO
+  peer_type: server
+  description: dc1-host4_iLO
   shutdown: false
   type: switched
   mode: access

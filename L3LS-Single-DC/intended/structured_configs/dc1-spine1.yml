@@ -76,10 +76,10 @@ service_routing_protocols_model: multi-agent
 ip_routing: true
 daemon_terminattr:
   cvaddrs:
-  - 192.168.1.12:9910
+  - apiserver.arista.io:443
   cvauth:
-    method: token
-    token_file: /tmp/token
+    method: token-secure
+    token_file: /tmp/cv-onboarding-token
   cvvrf: MGMT
   smashexcludes: ale,flexCounter,hardware,kni,pulse,strata
   ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
@@ -90,7 +90,7 @@ vlan_internal_order:
     beginning: 1006
     ending: 1199
 ip_name_servers:
-- ip_address: 192.168.1.1
+- ip_address: 172.16.1.1
   vrf: MGMT
 spanning_tree:
   mode: none
@@ -98,7 +98,7 @@ local_users:
 - name: admin
   privilege: 15
   role: network-admin
-  no_password: true
+  sha512_password: $6$nCS4WCHbh3uTQqBo$hdembb1YzRICkVLulMkodeBIOVHhqJwB/Z5hkPznDZYIF3Xd6WPULZi4JBcuBgO8fAORz7JSxAmLudQAT.p/P.
 - name: ansible
   privilege: 15
   role: network-admin

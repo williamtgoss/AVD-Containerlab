@@ -85,12 +85,12 @@ interface Management1
 
 | Name Server | VRF | Priority |
 | ----------- | --- | -------- |
-| 192.168.1.1 | MGMT | - |
+| 172.16.1.1 | MGMT | - |
 
 #### IP Name Servers Device Configuration
 
 ```eos
-ip name-server vrf MGMT 192.168.1.1
+ip name-server vrf MGMT 172.16.1.1
 ```
 
 ### NTP
@@ -158,7 +158,7 @@ management api http-commands
 
 ```eos
 !
-username admin privilege 15 role network-admin nopassword
+username admin privilege 15 role network-admin secret sha512 <removed>
 username ansible privilege 15 role network-admin secret sha512 <removed>
 ```
 
@@ -170,14 +170,14 @@ username ansible privilege 15 role network-admin secret sha512 <removed>
 
 | CV Compression | CloudVision Servers | VRF | Authentication | Smash Excludes | Ingest Exclude | Bypass AAA |
 | -------------- | ------------------- | --- | -------------- | -------------- | -------------- | ---------- |
-| gzip | 192.168.1.12:9910 | MGMT | token,/tmp/token | ale,flexCounter,hardware,kni,pulse,strata | /Sysdb/cell/1/agent,/Sysdb/cell/2/agent | True |
+| gzip | apiserver.arista.io:443 | MGMT | token-secure,/tmp/cv-onboarding-token | ale,flexCounter,hardware,kni,pulse,strata | /Sysdb/cell/1/agent,/Sysdb/cell/2/agent | True |
 
 #### TerminAttr Daemon Device Configuration
 
 ```eos
 !
 daemon TerminAttr
-   exec /usr/bin/TerminAttr -cvaddr=192.168.1.12:9910 -cvauth=token,/tmp/token -cvvrf=MGMT -disableaaa -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs
+   exec /usr/bin/TerminAttr -cvaddr=apiserver.arista.io:443 -cvauth=token-secure,/tmp/cv-onboarding-token -cvvrf=MGMT -disableaaa -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs
    no shutdown
 ```
 
@@ -312,7 +312,8 @@ vlan 4094
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
 | Ethernet3 | MLAG_PEER_dc1-leaf1b_Ethernet3 | *trunk | *- | *- | *['LEAF_PEER_L3', 'MLAG'] | 3 |
 | Ethernet4 | MLAG_PEER_dc1-leaf1b_Ethernet4 | *trunk | *- | *- | *['LEAF_PEER_L3', 'MLAG'] | 3 |
-| Ethernet5 | dc1-leaf1-server1_PCI1 | *trunk | *11-12,21-22 | *4092 | *- | 5 |
+| Ethernet5 | dc1-host1_eth1 | *trunk | *11-12,21-22 | *4092 | *- | 5 |
+| Ethernet6 | dc1-host2_Eth1 | *trunk | *11-12,21-22 | *4092 | *- | 6 |
 | Ethernet8 | DC1-LEAF1C_Ethernet1 | *trunk | *11-12,21-22,3401-3402 | *- | *- | 8 |
 
 *Inherited from Port-Channel Interface
@@ -353,9 +354,14 @@ interface Ethernet4
    channel-group 3 mode active
 !
 interface Ethernet5
-   description dc1-leaf1-server1_PCI1
+   description dc1-host1_eth1
    no shutdown
    channel-group 5 mode active
+!
+interface Ethernet6
+   description dc1-host2_Eth1
+   no shutdown
+   channel-group 6 mode active
 !
 interface Ethernet8
    description DC1-LEAF1C_Ethernet1
@@ -372,7 +378,8 @@ interface Ethernet8
 | Interface | Description | Type | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
 | Port-Channel3 | MLAG_PEER_dc1-leaf1b_Po3 | switched | trunk | - | - | ['LEAF_PEER_L3', 'MLAG'] | - | - | - | - |
-| Port-Channel5 | dc1-leaf1-server1_PortChannel dc1-leaf1-server1 | switched | trunk | 11-12,21-22 | 4092 | - | - | - | 5 | - |
+| Port-Channel5 | dc1-host1_PortChannel dc1-host1 | switched | trunk | 11-12,21-22 | 4092 | - | - | - | 5 | - |
+| Port-Channel6 | dc1-host2_PortChannel dc1-host2 | switched | trunk | 11-12,21-22 | 4092 | - | - | - | 6 | - |
 | Port-Channel8 | DC1-LEAF1C_Po1 | switched | trunk | 11-12,21-22,3401-3402 | - | - | - | - | 8 | - |
 
 #### Port-Channel Interfaces Device Configuration
@@ -388,13 +395,23 @@ interface Port-Channel3
    switchport trunk group MLAG
 !
 interface Port-Channel5
-   description dc1-leaf1-server1_PortChannel dc1-leaf1-server1
+   description dc1-host1_PortChannel dc1-host1
    no shutdown
    switchport
    switchport trunk allowed vlan 11-12,21-22
    switchport trunk native vlan 4092
    switchport mode trunk
    mlag 5
+   spanning-tree portfast
+!
+interface Port-Channel6
+   description dc1-host2_PortChannel dc1-host2
+   no shutdown
+   switchport
+   switchport trunk allowed vlan 11-12,21-22
+   switchport trunk native vlan 4092
+   switchport mode trunk
+   mlag 6
    spanning-tree portfast
 !
 interface Port-Channel8
