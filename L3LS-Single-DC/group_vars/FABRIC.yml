@@ -28,12 +28,12 @@ local_users:
   - name: ansible
     privilege: 15
     role: network-admin
-    # Password set to "ansible". Same string as the device generates when configuring a username.
+        # Password set to "ansible". Same string as the device generates when configuring a username.
     sha512_password: $6$7u4j1rkb3VELgcZE$EJt2Qff8kd/TapRoci0XaIZsL4tFzgq1YZBLD9c6f/knXzvcYY0NcMKndZeCv0T268knGKhOEwZAxqKjlMm920
   - name: admin
     privilege: 15
     role: network-admin
-    no_password: true
+    sha512_password: $6$nCS4WCHbh3uTQqBo$hdembb1YzRICkVLulMkodeBIOVHhqJwB/Z5hkPznDZYIF3Xd6WPULZi4JBcuBgO8fAORz7JSxAmLudQAT.p/P.
 
 # BGP peer groups passwords
 bgp_peer_groups:
@@ -66,7 +66,7 @@ default_interfaces:
     uplink_interfaces: [ Ethernet1-2 ]
 
 # CloudVision Portal definitions
-cvp_instance_ip: 192.168.1.12
+cvp_instance_ip: apiserver.arista.io
 terminattr_smashexcludes: "ale,flexCounter,hardware,kni,pulse,strata"
 terminattr_ingestexclude: "/Sysdb/cell/1/agent,/Sysdb/cell/2/agent"
 terminattr_disable_aaa: true

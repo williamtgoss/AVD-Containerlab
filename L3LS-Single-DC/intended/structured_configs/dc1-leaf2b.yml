@@ -102,7 +102,7 @@ router_bgp:
       peer_group: MLAG-IPv4-UNDERLAY-PEER
   vlans:
   - id: 11
-    tenant: TENANT1
+    tenant: Demo-1
     rd: 10.255.0.6:10011
     route_targets:
       both:
@@ -110,7 +110,7 @@ router_bgp:
     redistribute_routes:
     - learned
   - id: 12
-    tenant: TENANT1
+    tenant: Demo-1
     rd: 10.255.0.6:10012
     route_targets:
       both:
@@ -118,7 +118,7 @@ router_bgp:
     redistribute_routes:
     - learned
   - id: 21
-    tenant: TENANT1
+    tenant: Demo-1
     rd: 10.255.0.6:10021
     route_targets:
       both:
@@ -126,7 +126,7 @@ router_bgp:
     redistribute_routes:
     - learned
   - id: 22
-    tenant: TENANT1
+    tenant: Demo-1
     rd: 10.255.0.6:10022
     route_targets:
       both:
@@ -134,7 +134,7 @@ router_bgp:
     redistribute_routes:
     - learned
   - id: 3401
-    tenant: TENANT1
+    tenant: Demo-1
     rd: 10.255.0.6:13401
     route_targets:
       both:
@@ -142,7 +142,7 @@ router_bgp:
     redistribute_routes:
     - learned
   - id: 3402
-    tenant: TENANT1
+    tenant: Demo-1
     rd: 10.255.0.6:13402
     route_targets:
       both:
@@ -192,10 +192,10 @@ vrfs:
 - name: MGMT
   ip_routing: false
 - name: VRF10
-  tenant: TENANT1
+  tenant: Demo-1
   ip_routing: true
 - name: VRF11
-  tenant: TENANT1
+  tenant: Demo-1
   ip_routing: true
 management_interfaces:
 - name: Management1
@@ -222,32 +222,32 @@ vlans:
   - MLAG
 - id: 11
   name: VRF10_VLAN11
-  tenant: TENANT1
+  tenant: Demo-1
 - id: 12
   name: VRF10_VLAN12
-  tenant: TENANT1
+  tenant: Demo-1
 - id: 3009
   name: MLAG_iBGP_VRF10
   trunk_groups:
   - LEAF_PEER_L3
-  tenant: TENANT1
+  tenant: Demo-1
 - id: 21
   name: VRF11_VLAN21
-  tenant: TENANT1
+  tenant: Demo-1
 - id: 22
   name: VRF11_VLAN22
-  tenant: TENANT1
+  tenant: Demo-1
 - id: 3010
   name: MLAG_iBGP_VRF11
   trunk_groups:
   - LEAF_PEER_L3
-  tenant: TENANT1
+  tenant: Demo-1
 - id: 3401
   name: L2_VLAN3401
-  tenant: TENANT1
+  tenant: Demo-1
 - id: 3402
   name: L2_VLAN3402
-  tenant: TENANT1
+  tenant: Demo-1
 vlan_interfaces:
 - name: Vlan4093
   description: MLAG_PEER_L3_PEERING
@@ -261,19 +261,19 @@ vlan_interfaces:
   no_autostate: true
   mtu: 1500
 - name: Vlan11
-  tenant: TENANT1
+  tenant: Demo-1
   description: VRF10_VLAN11
   shutdown: false
   ip_address_virtual: 10.10.11.1/24
   vrf: VRF10
 - name: Vlan12
-  tenant: TENANT1
+  tenant: Demo-1
   description: VRF10_VLAN12
   shutdown: false
   ip_address_virtual: 10.10.12.1/24
   vrf: VRF10
 - name: Vlan3009
-  tenant: TENANT1
+  tenant: Demo-1
   type: underlay_peering
   shutdown: false
   description: 'MLAG_PEER_L3_iBGP: vrf VRF10'
@@ -281,19 +281,19 @@ vlan_interfaces:
   mtu: 1500
   ip_address: 10.255.1.101/31
 - name: Vlan21
-  tenant: TENANT1
+  tenant: Demo-1
   description: VRF11_VLAN21
   shutdown: false
   ip_address_virtual: 10.10.21.1/24
   vrf: VRF11
 - name: Vlan22
-  tenant: TENANT1
+  tenant: Demo-1
   description: VRF11_VLAN22
   shutdown: false
   ip_address_virtual: 10.10.22.1/24
   vrf: VRF11
 - name: Vlan3010
-  tenant: TENANT1
+  tenant: Demo-1
   type: underlay_peering
   shutdown: false
   description: 'MLAG_PEER_L3_iBGP: vrf VRF11'
