@@ -6,12 +6,14 @@ all:
         cvp:
           # Ansible variables used by the ansible_avd and ansible_cvp roles to push configuration to devices via CVP
           ansible_host: apiserver.arista.io
-          ansible_user: ansible
-          ansible_password: ansible
+          ansible_user: cvaas
+          ansible_password: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJkaWQiOjcxMDcwOTA2MjE4ODU1OTE4MDEsImRzbiI6ImFuc2libGUiLCJkc3QiOiJhY2NvdW50IiwiZXhwIjoxNzIxMTkyMzk5LCJpYXQiOjE2ODk2MDI2OTMsIm9naSI6NzEwNzA5MDYyMTg4NTU4NzIyOSwib2duIjoibm9ydGgtY2VudHJhbC1jZSIsInNpZCI6IjhkOTM3MmI0Y2UwNzVmMWM1MzllMzY3MzRjMTcwY2RkMWYyNTgxOGIyYTM3NGYyZWYwYzBmMjU4MGNiY2U3YzAtME9ZVTdfYkNZb1dIV2xVTG54eUppcGtpakx4N2NyTnJTNXhJOFN4bCJ9.mOlEm_8WZFYdJtFU7Q6_xF7wuv-Axx7usYVrLYi_bfPmpEiq7kEF4iu7d0cvjmC5uDECSiq5PMhFDjVbyWhAmA
           ansible_connection: httpapi
+          ansible_httpapi_host: apiserver.arista.io
           ansible_httpapi_use_ssl: true
           ansible_httpapi_validate_certs: false
           ansible_network_os: eos
+          ansible_httpapi_port: 443
 
     FABRIC:
       children:

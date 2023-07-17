@@ -1,0 +1,17 @@
+---
+#upload Configs to configlet in CVP
+
+- name: upload Configs to configlet in CVP
+  hosts: CLOUDVISION
+  gather_facts: false
+  tasks:
+
+    - name: Upload cvp configlets
+      ansible.builtin.import_role:
+          name: arista.avd.cvp_configlet_upload
+      vars:
+        configlet_directory: 'intended/configs/'
+        file_extension: 'cfg'
+        configlets_cvp_prefix: 'DC1-AVD-CLAB'
+        execute_tasks: false
+        cv_collection: v3
